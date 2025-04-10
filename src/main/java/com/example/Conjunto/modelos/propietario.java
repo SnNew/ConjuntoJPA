@@ -1,4 +1,4 @@
-package modelos;
+package com.example.Conjunto.modelos;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;

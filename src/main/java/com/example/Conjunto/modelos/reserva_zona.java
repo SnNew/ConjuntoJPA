@@ -1,11 +1,11 @@
-package modelos;
+package com.example.Conjunto.modelos;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Entity
-public class reserva_parqueadero {
+public class reserva_zona {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,11 +14,15 @@ public class reserva_parqueadero {
     private LocalDate fecha;
     private LocalTime hora_inicio;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "id_propietario")
     private propietario propietario;
 
-    public reserva_parqueadero() {
+    @ManyToOne
+    @JoinColumn(name = "id_zona")
+    private zona_social zona;
+
+    public reserva_zona() {
     }
 
     public Long getId_reserva() {
@@ -37,6 +41,10 @@ public class reserva_parqueadero {
         return propietario;
     }
 
+    public zona_social getZona() {
+        return zona;
+    }
+
     public void setId_reserva(Long id_reserva) {
         this.id_reserva = id_reserva;
     }
@@ -51,5 +59,9 @@ public class reserva_parqueadero {
 
     public void setPropietario(propietario propietario) {
         this.propietario = propietario;
+    }
+
+    public void setZona(zona_social zona) {
+        this.zona = zona;
     }
 }
