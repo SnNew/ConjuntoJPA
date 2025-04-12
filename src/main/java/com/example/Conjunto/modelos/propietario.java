@@ -3,6 +3,7 @@ package com.example.Conjunto.modelos;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 @Entity
 public class propietario {
@@ -18,6 +19,9 @@ public class propietario {
 
     @OneToOne(mappedBy = "propietario", cascade = CascadeType.ALL)
     private reserva_parqueadero reservaParqueadero;
+
+    @OneToMany(mappedBy = "propietario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<visitante> visitantes;
 
     public propietario() {
     }
@@ -46,6 +50,10 @@ public class propietario {
         return reservaParqueadero;
     }
 
+    public List<visitante> getVisitantes() {
+        return visitantes;
+    }
+
     public void setId_propietario(Long id_propietario) {
         this.id_propietario = id_propietario;
     }
@@ -68,5 +76,9 @@ public class propietario {
 
     public void setReservaParqueadero(reserva_parqueadero reservaParqueadero) {
         this.reservaParqueadero = reservaParqueadero;
+    }
+
+    public void setVisitantes(List<visitante> visitantes) {
+        this.visitantes = visitantes;
     }
 }
